@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dagger2Demo</string>
+    <string name="click_counter">I have been clicked 0 times</string>
 </resources>
