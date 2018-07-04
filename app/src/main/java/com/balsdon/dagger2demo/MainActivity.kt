@@ -4,8 +4,12 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), MainView {
-    private val presenter = MainPresenter(this)
+interface PresenterDependent {
+    fun presenter(presenter: MainPresenter)
+}
+
+class MainActivity : AppCompatActivity(), MainView, PresenterDependent {
+    private lateinit var presenter : MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,5 +19,15 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun setText(text: String) {
         buttonToClick.text = (getString(R.string.click_counter)).replace("0", text)
+    }
+
+    override fun onDestroy() {
+        presenter.detach()
+        super.onDestroy()
+    }
+
+    override fun presenter(presenter: MainPresenter) {
+        this.presenter = presenter
+        presenter.attach(this)
     }
 }

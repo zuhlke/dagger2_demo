@@ -1,12 +1,22 @@
 package com.balsdon.dagger2demo
 
-abstract class Presenter(val view: View)
+abstract class Presenter<T : View> {
+    var view: T? = null
 
-class MainPresenter(private val mainView: MainView) : Presenter(mainView) {
+    fun attach(view: T) {
+        this.view = view
+    }
+
+    fun detach() {
+        view = null
+    }
+}
+
+class MainPresenter : Presenter<MainView>() {
     private var counter = 0
 
     fun clicked() {
         counter++
-        mainView.setText(counter.toString())
+        view?.setText(counter.toString())
     }
 }
