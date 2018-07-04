@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity(), MainView, PresenterDependent {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        presenter.attach(this)
         buttonToClick.setOnClickListener { presenter.clicked() }
     }
 
