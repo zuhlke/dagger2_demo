@@ -16,7 +16,6 @@ abstract class Presenter<T: View> {
 
 //Heaven forbid you forget the @Inject constructor
 class MainPresenter @Inject constructor() : Presenter<MainView>() {
-
     private var counter = 0
 
     fun clicked() {
