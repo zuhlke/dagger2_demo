@@ -6,8 +6,6 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
-apply plugin: "build-time-tracker"
-
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -22,26 +20,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-}
-
-buildtimetracker {
-    reporters {
-        csv {
-            output "build/times.csv"
-            append true
-            header false
-        }
-
-        summary {
-            ordered false
-            threshold 50
-            barstyle "unicode"
-        }
-
-        csvSummary {
-            csv "build/times.csv"
         }
     }
 }
