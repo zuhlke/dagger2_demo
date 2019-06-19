@@ -1,6 +1,8 @@
 package com.balsdon.dagger2demo
 
-abstract class Presenter<T : View> {
+import javax.inject.Inject
+
+abstract class Presenter<T: View> {
     var view: T? = null
 
     fun attach(view: T) {
@@ -12,7 +14,8 @@ abstract class Presenter<T : View> {
     }
 }
 
-class MainPresenter : Presenter<MainView>() {
+//Heaven forbid you forget the @Inject constructor
+class MainPresenter @Inject constructor() : Presenter<MainView>() {
     private var counter = 0
 
     fun clicked() {
